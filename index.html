@@ -273,7 +273,7 @@ class Loader {
         let img
         if (p.image.startsWith("http")) {
           img = "files/" + p.image.split("")
-            .map(c => c.charCodeAt(0).toString(16).padStart(2, "000"))
+            .map(c => c.charCodeAt(0).toString(16).padStart(2, "0"))
             .join("");
         } else if (p.image.startsWith("data:image")) {
           img = p.image
@@ -281,10 +281,11 @@ class Loader {
           img = p.image
         } else {
           img = "ipfs/" + p.image.replace("ipfs://", "")
+          
         }
 
         return `<div class='item'>
-  <a target="_blank" href="https://opensea.io/assets/ethereum/0x8f170f73076b7a45749677b1681b13366b3c80f7/${p.id}"><img src="${img}"></a>
+  <a target="_blank" href="https://opensea.io/assets/ethereum/0x8f170f73076b7a45749677b1681b13366b3c80f7/${p.id}"><img src="${p.image}"></a>
   <table>${table}</table>
   </div>`
       }).join("")
