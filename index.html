@@ -273,7 +273,7 @@ class Loader {
         let img
         if (p.image.startsWith("http")) {
           img = "files/" + p.image.split("")
-            .map(c => c.charCodeAt(0).toString(16).padStart(2, "0"))
+            .map(c => c.charCodeAt(0).toString(16).padStart(2, "000"))
             .join("");
         } else if (p.image.startsWith("data:image")) {
           img = p.image
