@@ -241,7 +241,7 @@ class Loader {
     if (limit > 0) {
       sql += ` LIMIT ${limit}`
     } else {
-      sql += " LIMIT 200"
+      sql += " LIMIT 115"
     }
     const contents = this.db.exec(sql)
     let index = 0;
