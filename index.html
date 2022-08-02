@@ -325,8 +325,8 @@ class Loader {
         }
 
         return `<div class='item'>
-          <h3 style="color:white; background-color:black;margin-top:0px;text-align:right;">#${p.id}</h3>
-  <a target="_blank" href="https://opensea.io/assets/ethereum/0x8f170f73076b7a45749677b1681b13366b3c80f7/${p.id}"><img src="${p.image}"></a>
+          
+  <a target="_blank" href="https://opensea.io/assets/ethereum/0x8f170f73076b7a45749677b1681b13366b3c80f7/${p.id}"><img src="${p.image}"><h3 style="color:white; background-color:black;margin-top:0px;text-align:right;">#${p.id}</h3></a>
   <table>${table}</table>
   </div>`
       }).join("")
