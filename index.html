@@ -95,7 +95,8 @@ nav td {
   width: 200px;
   padding: 5px;
   box-sizing: border-box;
-  
+  background-color: black;
+  border-radius: 10px;
 }
 .item img {
   width: 100%;
@@ -241,6 +242,7 @@ td {
 @keyframes spin12 { to { transform: translateY(-18.0em); } }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.1/sql-wasm.js"></script>
+
 <script>
 class Loader {
   async init() {
@@ -324,7 +326,7 @@ class Loader {
           
         }
 
-        return `<div class='item'>
+        return `<div id='_item' class='item'>
           <h3 style="color:white; background-color:black;margin-bottom:5px;text-align:right;">#${p.id}</h3>
   <a target="_blank" href="https://opensea.io/assets/ethereum/0x8f170f73076b7a45749677b1681b13366b3c80f7/${p.id}"><img src="${p.image}"></a>
   <table>${table}</table>
@@ -358,7 +360,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   })
 })
 </script>
+<script src="html2canvas.js" defer></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
+
 <body>
   <div><audio controls loop src="Hexagonal_Zero.mp3">Your browser does not support the<code>audio</code> element.</audio></div>
 <nav>
@@ -391,6 +397,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     </tr>
   </table>
   <button id='query'>Query</button>
+  <center>
+    <div><button onclick="capture()">Capture</button></div>
+    <a href="https://twitter.com/share?url=result&zerobeings" class="twitter-share-button" data-show-count="false">Tweet</a>
+    <div border-color="white">
+      <img src="" alt="" id="result">
+    </div>
+    <script>
+      function capture() {
+          html2canvas(document.getElementById("_item"), {
+              backgroundColor:null,
+              letterRendering: 1,
+              allowTaint: false,
+              useCORS: true,
+              
+          })
+              .then(function (canvas) {
+                  document.getElementById("result").src = canvas.toDataURL("image/png", 1);
+              })
+              .catch((e) => {
+                  alert(e);
+              });
+      }
+    </script>
+      </center>
 </nav>
 <div class='container'>
   <div class='loader'>
@@ -399,5 +429,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div>loading</div>
   </div>
 </div>
+
+
+
+  
 </body>
 </html>
