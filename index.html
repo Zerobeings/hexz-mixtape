@@ -428,6 +428,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 })
 </script>
 <script src="html2canvas.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
@@ -480,8 +481,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   <div class="generateCard">
   <aside>
-    <button class='btn2' onclick="generate()">Generate</button>
-    <button class='btn2' onclick="download()">Download</button>
+    <button class='btn2' onclick="generate()" >Generate</button>
+    <a class='btn2' onclick="downLoad()" id="downloader" href="#">Download</a>
     <div><img src="drGenerate.png" alt="" id="result" width="200px"></div>
     <div class='twt'>
     <a href="https://twitter.com/intent/tweet?hashtags=Zerobeings,HEXZ,NFTs,cc0&text=Mixtape%20&%20Trading%20Card%20Generator" class="twitter-share-button" data-show-count="false" data-via="Zero_beings">Tweet</a>
@@ -491,38 +492,40 @@ document.addEventListener("DOMContentLoaded", async () => {
 </div>
 
     <script>
+
+        // Global variable
+        var getCanvas
+
       function generate() {
           html2canvas(document.getElementById("_item"), {
               backgroundColor:null,
               letterRendering: 1,
               allowTaint: false,
               useCORS: true,
-              
           })
               .then(function (canvas) {
+                  
                   document.getElementById("result").src = canvas.toDataURL("image/png", 1);
-
+                  getCanvas=canvas
               })
+
               .catch((e) => {
                   alert(e);
               });
+              
             }
-        function download(){
-              $("#download").on('click', function() {
-                var imgageData = 
-                    getCanvas.toDataURL("image/png");
+
+      function downLoad(){
               
-                // Now browser starts downloading 
-                // it instead of just showing it
-                var newData = imgageData.replace(
-                /^data:image\/png/, "data:application/octet-stream");
-              
-                $("#download").attr(
-                "download", "HEXZ.png").attr(
-                "href", newData);
-            });
-          }
-      
+              imgageData = getCanvas.toDataURL("image/png", 1);
+                    var newData = imgageData.replace(
+                    /^data:image\/png/, "data:application/octet-stream");  
+          
+                  $("#downloader").attr(
+                  "download", "HEXZ.png").attr(
+                  "href", newData);
+
+            }
     </script>
     
 
