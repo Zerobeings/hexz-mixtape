@@ -80,11 +80,19 @@ nav table {
   max-width: 800px;
   margin: 0 auto;
   width: 90%;
+  
 }
+
 nav td {
   background: none;
   color: rgb(145, 145, 145);
 }
+
+aside {
+  padding: 10px 10px;
+  margin: 0 0 15px auto;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -166,6 +174,7 @@ td {
   border:none;
   font-size: 20px;
   font-family: 'Aldrich';
+  
 }
 .btn {
   font-family: 'Aldrich';
@@ -178,8 +187,13 @@ td {
   margin: 20px 0;
   border: 2px solid #B9F49E;
   border-radius: 10px;
-  
 }
+
+.twt{
+  padding: 10px 10px;
+  margin: 20px 0;
+}
+
 .loader {
   color: white;
   padding: 100px;
@@ -367,9 +381,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 <body>
   <div><audio controls loop src="Hexagonal_Zero.mp3">Your browser does not support the<code>audio</code> element.</audio></div>
+
 <nav>
-  
   <a>HEXZmixtape</a>
+
+  <aside class="gen">
+    <button class='btn' onclick="generate()">Generate</button>
+    <div><img src="drGenerate.png" alt="" id="result" width="200px"></div>
+    <div class='twt'>
+    <a href="https://twitter.com/intent/tweet?hashtags=Zerobeings,HEXZ,NFTs,cc0&text=Mixtape%20&%20Trading%20Card%20Generator" class="twitter-share-button" data-show-count="false" data-via="Zero_beings">Tweet</a>
+    </div>
+  </aside>
+  
   <div><a href="https://mixtape.cell.computer/#/" target="_blank"><img src = "mixtape.png" width="159" height="98.3"></a></div>
   <div class='sub'>Welcome to the Hexagonal Zero series mixtape.</div>
   <div>
@@ -378,6 +401,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <a class='btn' href="https://discord.gg/sjbVYr6ZXS" target="_blank">Discord</a>
     <a class='btn' href="https://twitter.com/skogard" target="_blank">Powered by ^</a>
   </div>
+
   <table>
     <tr>
       <td>SELECT</td>
@@ -393,18 +417,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     </tr>
     <tr>
       <td>LIMIT</td>
-      <td><input id='limit' type='text' placeholder='limmit' value=115></td>
+      <td><input id='limit' type='text' placeholder='limit' value=115></td>
     </tr>
   </table>
   <button id='query'>Query</button>
-  <center>
-    <div><button onclick="capture()">Capture</button></div>
-    <a href="https://twitter.com/share?url=result&zerobeings" class="twitter-share-button" data-show-count="false">Tweet</a>
-    <div>
-      <img src="" alt="" id="result" width="200px">
-    </div>
+  
+  
+    
+    
+    
     <script>
-      function capture() {
+      function generate() {
           html2canvas(document.getElementById("_item"), {
               backgroundColor:null,
               letterRendering: 1,
@@ -414,20 +437,23 @@ document.addEventListener("DOMContentLoaded", async () => {
           })
               .then(function (canvas) {
                   document.getElementById("result").src = canvas.toDataURL("image/png", 1);
+
               })
               .catch((e) => {
                   alert(e);
               });
+              
       }
     </script>
-      </center>
 </nav>
+
 <div class='container'>
   <div class='loader'>
     <div class='loading dots'></div>
     <br>
     <div>loading</div>
   </div>
+
 </div>
 
 
