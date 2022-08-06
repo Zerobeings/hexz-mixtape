@@ -42,6 +42,7 @@ nav {
 }
 .sub {
   font-size: 14px;
+  margin-bottom: 20px;
 }
 input[type=text] {
   width: 100%;
@@ -52,7 +53,7 @@ input[type=text] {
 }
 textarea {
   width: 100%;
-  height: 50px;
+  height: 300px;
   background: white;
   border: 1px solid rgba(0,0,0,0.1);
   padding: 5px;
@@ -78,19 +79,23 @@ nav td:nth-child(1) {
 }
 nav table {
   max-width: 800px;
-  margin: 0 auto;
   width: 90%;
-  
+  float: left;
+  margin:0 0 0 0;
 }
 
 nav td {
   background: none;
   color: rgb(145, 145, 145);
+  margin: 0 0 0 0;  
+  
 }
 
 aside {
   padding: 10px 10px;
+  width: 100%;
   margin: 0 0 15px auto;
+  
 }
 
 .container {
@@ -98,6 +103,7 @@ aside {
   flex-wrap: wrap;
   justify-content: center;
   padding: 20px;
+  
 }
 .item {
   width: 200px;
@@ -174,7 +180,7 @@ td {
   border:none;
   font-size: 20px;
   font-family: 'Aldrich';
-  
+  float: left;
 }
 .btn {
   font-family: 'Aldrich';
@@ -184,14 +190,29 @@ td {
   background: black;
   color: white;
   padding: 10px 10px;
-  margin: 20px 0;
+  margin: 10px 0;
   border: 2px solid #B9F49E;
   border-radius: 10px;
 }
 
+.btn2 {
+  font-family: 'Aldrich';
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 0;
+  background: black;
+  color: white;
+  padding: 10px 10px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border: 2px solid #B9F49E;
+  border-radius: 10px;
+  cursor: pointer;
+}
 .twt{
   padding: 10px 10px;
-  margin: 20px 0;
+  margin: 5px 0;
+  
 }
 
 .loader {
@@ -217,6 +238,38 @@ td {
   display: inline-table;
   white-space: pre;
   text-align: left;
+}
+
+.queryTool {
+  grid-area: left;
+  align-items: center;
+}
+
+.generateCard {
+  grid-area: right;
+  align-content: center;
+ 
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-template-areas:
+    'left right'
+}
+
+.grid-container > div {
+  align-items: center;
+  text-align: center;
+  padding: 20px 20px;
+}
+
+.audioPlayer{
+  display: block;
+  color: black;
+  border-radius: 5px;
+  margin:0 auto;
 }
 
 /* --- Types --- */
@@ -380,52 +433,63 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 <body>
-  <div><audio controls loop src="Hexagonal_Zero.mp3">Your browser does not support the<code>audio</code> element.</audio></div>
 
 <nav>
-  <a>HEXZmixtape</a>
+  <div>
+    <center><a>HEXZmixtape</a></center>
+    <audio class='audioPlayer' controls loop src="Hexagonal_Zero.mp3">Your browser does not support the<code>audio</code> element.</audio>
+  </div>
 
-  <aside class="gen">
-    <button class='btn' onclick="generate()">Generate</button>
-    <div><img src="drGenerate.png" alt="" id="result" width="200px"></div>
-    <div class='twt'>
-    <a href="https://twitter.com/intent/tweet?hashtags=Zerobeings,HEXZ,NFTs,cc0&text=Mixtape%20&%20Trading%20Card%20Generator" class="twitter-share-button" data-show-count="false" data-via="Zero_beings">Tweet</a>
-    </div>
-  </aside>
   
-  <div><a href="https://mixtape.cell.computer/#/" target="_blank"><img src = "mixtape.png" width="159" height="98.3"></a></div>
-  <div class='sub'>Welcome to the Hexagonal Zero series mixtape.</div>
+  <div>
+    <a href="https://mixtape.cell.computer/#/" target="_blank"><img src = "mixtape.png" width="159" height="98.3"></a></div>
+    <div class='sub'>Welcome to the Hexagonal Zero series mixtape.</div>
   <div>
     <a class='btn' href="https://zerobeings.xyz" target="_blank">Zero Beings</a>
     <a class='btn' href="https://twitter.com/Zero_beings" target="_blank">Twitter</a>
     <a class='btn' href="https://discord.gg/sjbVYr6ZXS" target="_blank">Discord</a>
     <a class='btn' href="https://twitter.com/skogard" target="_blank">Powered by ^</a>
   </div>
+</nav>
 
-  <table>
-    <tr>
-      <td>SELECT</td>
-      <td><input id='select' type='text' placeholder='select columns' value='*'></td>
-    </tr>
-    <tr>
-      <td>FROM</td>
-      <td>metadata</td>
-    </tr>
-    <tr>
-      <td>WHERE</td>
-      <td><textarea id='where' placeholder='where condition'></textarea></td>
-    </tr>
-    <tr>
-      <td>LIMIT</td>
-      <td><input id='limit' type='text' placeholder='limit' value=115></td>
-    </tr>
-  </table>
-  <button id='query'>Query</button>
-  
-  
-    
-    
-    
+  <div class="grid-container">
+    <div class="queryTool">
+      <nav>
+        <table>
+          <tr>
+            <td >SELECT</td>
+            <td><input id='select' type='text' placeholder='select columns' value='*'></td>
+          </tr>
+          <tr>
+            <td>FROM</td>
+            <td>metadata</td>
+          </tr>
+          <tr>
+            <td>WHERE</td>
+            <td><textarea id='where' placeholder='where condition'></textarea></td>
+          </tr>
+          <tr>
+            <td>LIMIT</td>
+            <td><input id='limit' type='text' placeholder='limit' value=115></td>
+          </tr>
+        </table>
+        <button id='query'>Query</button>
+      </nav>
+      
+  </div>
+
+  <div class="generateCard">
+  <aside>
+    <button class='btn2' onclick="generate()">Generate</button>
+    <button class='btn2' onclick="download()">Download</button>
+    <div><img src="drGenerate.png" alt="" id="result" width="200px"></div>
+    <div class='twt'>
+    <a href="https://twitter.com/intent/tweet?hashtags=Zerobeings,HEXZ,NFTs,cc0&text=Mixtape%20&%20Trading%20Card%20Generator" class="twitter-share-button" data-show-count="false" data-via="Zero_beings">Tweet</a>
+    </div>
+  </aside>
+  </div>
+</div>
+
     <script>
       function generate() {
           html2canvas(document.getElementById("_item"), {
@@ -442,9 +506,27 @@ document.addEventListener("DOMContentLoaded", async () => {
               .catch((e) => {
                   alert(e);
               });
+            }
+        function download(){
+              $("#download").on('click', function() {
+                var imgageData = 
+                    getCanvas.toDataURL("image/png");
               
-      }
+                // Now browser starts downloading 
+                // it instead of just showing it
+                var newData = imgageData.replace(
+                /^data:image\/png/, "data:application/octet-stream");
+              
+                $("#download").attr(
+                "download", "HEXZ.png").attr(
+                "href", newData);
+            });
+          }
+      
     </script>
+    
+
+
 </nav>
 
 <div class='container'>
