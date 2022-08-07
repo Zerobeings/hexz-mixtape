@@ -173,7 +173,7 @@ td {
   cursor: pointer;
   padding: 10px;
   max-width: 800px;
-  width: 90%;
+  width: 70%;
   box-sizing: border-box;
   color: white;
   border-radius: 10px;
@@ -203,12 +203,31 @@ td {
   background: black;
   color: white;
   padding: 10px 10px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
   border: 2px solid #B9F49E;
   border-radius: 10px;
   cursor: pointer;
 }
+
+.btn3 {
+  font-family: 'Aldrich';
+  font-size: 16px;
+  width: 17%;
+  font-style: normal;
+  letter-spacing: 0;
+  background: black;
+  color: white;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  border: 2px solid #B9F49E;
+  border-radius: 10px;
+  cursor: pointer;
+  float: left;
+}
+
 .twt{
   padding: 10px 10px;
   margin: 5px 0;
@@ -248,6 +267,7 @@ td {
 .generateCard {
   grid-area: right;
   align-content: center;
+  margin-top: 50px;
  
 }
 
@@ -426,6 +446,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   })
 })
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const loader = new Loader()
+  await loader.init()
+  loader.next()
+  document.getElementById("reset").addEventListener("click", () => {
+    loader.next()
+  })
+})
+
 </script>
 <script src="html2canvas.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -457,6 +487,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="queryTool">
       <nav>
         <table>
+          <center><a style="font-size:32px ;">Find Your Zero:</a></center>
           <tr>
             <td >SELECT</td>
             <td><input id='select' type='text' placeholder='select columns' value='*'></td>
@@ -474,25 +505,33 @@ document.addEventListener("DOMContentLoaded", async () => {
             <td><input id='limit' type='text' placeholder='limit' value=115></td>
           </tr>
         </table>
-        <button id='query'>Query</button>
+        
+          <button id='query'>Query</button>
+          <button class="btn3" onclick="reset()" id="reset">Reset</button>
+        
       </nav>
       
   </div>
+  
 
-  <div class="generateCard">
-  <aside>
+  <div class="generateCard" style="background-color: #35373C;">
+ 
+    <center><a style="font-size:32px; color: white;margin-top: 40px;">Generate Your Card:</a></center>
+    <div>
+      
     <button class='btn2' onclick="generate()" >Generate</button>
-    <a class='btn2' onclick="downLoad()" id="downloader" href="#">Download</a>
+    <a class='btn2' onclick="downLoad()" id="downloader" href="#" style="text-decoration:none;">Download</a>
+    </div>
     <div><img src="drGenerate.png" alt="" id="result" width="200px"></div>
     <div class='twt'>
     <a href="https://twitter.com/intent/tweet?hashtags=Zerobeings,HEXZ,NFTs,cc0&text=Mixtape%20&%20Trading%20Card%20Generator" class="twitter-share-button" data-show-count="false" data-via="Zero_beings">Tweet</a>
+    
     </div>
-  </aside>
+  
   </div>
 </div>
 
     <script>
-
         // Global variable
         var getCanvas
 
@@ -526,10 +565,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                   "href", newData);
 
             }
+
+      function reset(){
+        document.querySelector("#where").value = "";
+        document.getElementById("result").src = "drGenerate.png"
+      }      
+
     </script>
-    
-
-
 </nav>
 
 <div class='container'>
