@@ -230,8 +230,7 @@ td {
 
 .twt{
   padding: 10px 10px;
-  margin: 5px 0;
-  
+  margin: 5px 0;  
 }
 
 .loader {
@@ -414,7 +413,7 @@ class Loader {
         }
 
         return `<div id='_item' class='item'>
-          <h3 style="color:white; background-color:black;margin-bottom:5px;text-align:right;">#${p.id}</h3>
+          <center><h4 style="color:white; background-color:black;margin-bottom:5px;margin-top:5px;">Hexagonal Zero #${p.id}</h4></center>
   <a target="_blank" href="https://opensea.io/assets/ethereum/0x8f170f73076b7a45749677b1681b13366b3c80f7/${p.id}"><img src="${p.image}"></a>
   <table>${table}</table>
   </div>`
@@ -460,6 +459,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 <script src="html2canvas.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 </head>
 
 
@@ -523,11 +523,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     <a class='btn2' onclick="downLoad()" id="downloader" href="#" style="text-decoration:none;">Download</a>
     </div>
     <div><img src="drGenerate.png" alt="" id="result" width="200px"></div>
-    <div class='twt'>
-    <a href="https://twitter.com/intent/tweet?hashtags=Zerobeings,HEXZ,NFTs,cc0&text=Mixtape%20&%20Trading%20Card%20Generator" class="twitter-share-button" data-show-count="false" data-via="Zero_beings">Tweet</a>
+    <div class='twt'><button class='btn2' style="width: 40%; margin-right: 5px;text-decoration:none;">Mint</button><a style="text-decoration:none;" href="https://twitter.com/intent/tweet?url=zerobeings.xyz&hashtags=Zerobeings,HEXZ,NFTs,cc0&text=Mixtape%20&%20Trading%20Card%20Generator" class="btn2" data-show-count="false" data-via="Zero_beings">Tweet</a></div>
     
-    </div>
-  
   </div>
 </div>
 
