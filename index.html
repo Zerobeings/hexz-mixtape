@@ -41,7 +41,9 @@ nav {
   opacity: 0.9;
 }
 .sub {
-  font-size: 14px;
+  font-size: 32px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 input[type=text] {
   width: 100%;
@@ -52,7 +54,7 @@ input[type=text] {
 }
 textarea {
   width: 100%;
-  height: 50px;
+  height: 300px;
   background: white;
   border: 1px solid rgba(0,0,0,0.1);
   padding: 5px;
@@ -78,28 +80,35 @@ nav td:nth-child(1) {
 }
 nav table {
   max-width: 800px;
-  margin: 0 auto;
   width: 90%;
+  float: left;
+  margin:0 0 0 0;
 }
+
 nav td {
   background: none;
   color: rgb(145, 145, 145);
+  margin: 0 0 0 0;  
+  
 }
+
+
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 0;
+  
 }
 .item {
   width: 200px;
-  padding: 5px;
+  padding: 10px;
   box-sizing: border-box;
-  
+  background-color: black;
+  border-radius: 10px;
 }
 .item img {
   width: 100%;
-  border-radius: 6px;
   padding-bottom: 10px;
 }
 table {
@@ -158,13 +167,14 @@ td {
   cursor: pointer;
   padding: 10px;
   max-width: 800px;
-  width: 90%;
+  width: 70%;
   box-sizing: border-box;
   color: white;
   border-radius: 10px;
   border:none;
   font-size: 20px;
   font-family: 'Aldrich';
+  float: left;
 }
 .btn {
   font-family: 'Aldrich';
@@ -174,11 +184,49 @@ td {
   background: black;
   color: white;
   padding: 10px 10px;
-  margin: 20px 0;
+  margin: 10px 0;
   border: 2px solid #B9F49E;
   border-radius: 10px;
-  
 }
+
+.btn2 {
+  font-family: 'Aldrich';
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 0;
+  background: black;
+  color: white;
+  padding: 10px 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #B9F49E;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn3 {
+  font-family: 'Aldrich';
+  font-size: 16px;
+  width: 17%;
+  font-style: normal;
+  letter-spacing: 0;
+  background: black;
+  color: white;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  border: 2px solid #B9F49E;
+  border-radius: 10px;
+  cursor: pointer;
+  float: left;
+}
+
+.twt{
+  padding: 10px 10px;
+  margin: 5px 0;  
+}
+
 .loader {
   color: white;
   padding: 100px;
@@ -202,6 +250,39 @@ td {
   display: inline-table;
   white-space: pre;
   text-align: left;
+}
+
+.queryTool {
+  grid-area: left;
+  align-items: center;
+}
+
+.generateCard {
+  grid-area: right;
+  align-content: center;
+  margin-top: 50px;
+ 
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-template-areas:
+    'left right'
+}
+
+.grid-container > div {
+  align-items: center;
+  text-align: center;
+  padding: 20px 20px;
+}
+
+.audioPlayer{
+  display: block;
+  color: black;
+  border-radius: 5px;
+  margin:0 auto;
 }
 
 /* --- Types --- */
@@ -241,6 +322,7 @@ td {
 @keyframes spin12 { to { transform: translateY(-18.0em); } }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.1/sql-wasm.js"></script>
+
 <script>
 class Loader {
   async init() {
@@ -324,8 +406,8 @@ class Loader {
           
         }
 
-        return `<div class='item'>
-          <h3 style="color:white; background-color:black;margin-bottom:5px;text-align:right;">#${p.id}</h3>
+        return `<div id='_item' class='item'>
+          <center><h4 style="color:white; background-color:black;margin-bottom:5px;margin-top:5px;">Hexagonal Zero #${p.id}</h4></center>
   <a target="_blank" href="https://opensea.io/assets/ethereum/0x8f170f73076b7a45749677b1681b13366b3c80f7/${p.id}"><img src="${p.image}"></a>
   <table>${table}</table>
   </div>`
@@ -357,47 +439,144 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   })
 })
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const loader = new Loader()
+  await loader.init()
+  loader.next()
+  document.getElementById("reset").addEventListener("click", () => {
+    loader.next()
+  })
+})
+
 </script>
+<script src="html2canvas.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 </head>
+
+
 <body>
-  <div><audio controls loop src="Hexagonal_Zero.mp3">Your browser does not support the<code>audio</code> element.</audio></div>
+
 <nav>
-  
-  <a>HEXZmixtape</a>
-  <div><a href="https://mixtape.cell.computer/#/" target="_blank"><img src = "mixtape.png" width="159" height="98.3"></a></div>
-  <div class='sub'>Welcome to the Hexagonal Zero series mixtape.</div>
   <div>
+    <a style="font-size:120px; text-align: center;">HEXZmixtape</a>
+    <audio class='audioPlayer' controls loop src="Hexagonal_Zero.mp3">Your browser does not support the<code>audio</code> element.</audio>
+  </div>
+
+  
+  <div>
+    <a href="https://mixtape.cell.computer/#/" target="_blank"><img src = "mixtape.png" width="159" height="98.3"></a></div>
+    <div class='sub'>Welcome to the Hexagonal Zero Trading Card Factory</div>
+  <div>Created by...
     <a class='btn' href="https://zerobeings.xyz" target="_blank">Zero Beings</a>
     <a class='btn' href="https://twitter.com/Zero_beings" target="_blank">Twitter</a>
     <a class='btn' href="https://discord.gg/sjbVYr6ZXS" target="_blank">Discord</a>
-    <a class='btn' href="https://twitter.com/skogard" target="_blank">Powered by ^</a>
+    ...Powered by...<a class='btn' href="https://mixtape.cell.computer">Mixtape</a>...which is developed by...
+    <a class='btn' href="https://twitter.com/skogard" target="_blank">Skogard</a>
   </div>
-  <table>
-    <tr>
-      <td>SELECT</td>
-      <td><input id='select' type='text' placeholder='select columns' value='*'></td>
-    </tr>
-    <tr>
-      <td>FROM</td>
-      <td>metadata</td>
-    </tr>
-    <tr>
-      <td>WHERE</td>
-      <td><textarea id='where' placeholder='where condition'></textarea></td>
-    </tr>
-    <tr>
-      <td>LIMIT</td>
-      <td><input id='limit' type='text' placeholder='limmit' value=115></td>
-    </tr>
-  </table>
-  <button id='query'>Query</button>
 </nav>
+
+  <div class="grid-container">
+    <div class="queryTool">
+      <nav>
+        <table>
+          <center><a style="font-size:32px ;">Find Your Zero:</a></center>
+          <tr>
+            <td >SELECT</td>
+            <td><input id='select' type='text' placeholder='select columns' value='*'></td>
+          </tr>
+          <tr>
+            <td>FROM</td>
+            <td>metadata</td>
+          </tr>
+          <tr>
+            <td>WHERE</td>
+            <td><textarea id='where' placeholder='where condition'></textarea></td>
+          </tr>
+          <tr>
+            <td>LIMIT</td>
+            <td><input id='limit' type='text' placeholder='limit' value=115></td>
+          </tr>
+        </table>
+        
+          <button id='query'>Query</button>
+          <button class="btn3" onclick="reset()" id="reset">Reset</button>
+        
+      </nav>
+      
+  </div>
+  
+
+  <div class="generateCard" style="background-color: #35373C; border-radius: 10px;">
+ 
+    <a style="font-size:32px; color: white;margin-top: 40px;text-align: center;">Generate Your Card:</a>
+    <div>
+      
+    <button class='btn2' onclick="generate()" >Generate</button>
+    <a class='btn2' onclick="downLoad()" id="downloader" href="#" style="text-decoration:none;">Download</a>
+    </div>
+    <div style="margin-bottom:20px ;"><img src="drGenerate.png" alt="" id="result" width="200px"></div>
+    <div class='twt'><a style="text-decoration:none;" href="https://twitter.com/intent/tweet?url=https://hexzmixtape.zerobeings.app/&hashtags=Zerobeings,HEXZ,NFTs,cc0&text=Mixtape%20&%20Trading%20Card%20Generator" class="btn2" data-show-count="false" data-via="Zero_beings">Tweet</a></div>
+    
+  </div>
+</div>
+
+    <script>
+        // Global variable
+        var getCanvas
+
+      function generate() {
+          html2canvas(document.getElementById("_item"), {
+              backgroundColor:null,
+              letterRendering: 1,
+              allowTaint: false,
+              useCORS: true,
+          })
+              .then(function (canvas) {
+                  
+                  document.getElementById("result").src = canvas.toDataURL("image/png", 1);
+                  getCanvas=canvas
+              })
+
+              .catch((e) => {
+                  alert(e);
+              });
+              
+            }
+
+      function downLoad(){
+              
+              imgageData = getCanvas.toDataURL("image/png", 1);
+                    var newData = imgageData.replace(
+                    /^data:image\/png/, "data:application/octet-stream");  
+          
+                  $("#downloader").attr(
+                  "download", "HEXZ.png").attr(
+                  "href", newData);
+
+            }
+
+      function reset(){
+        document.querySelector("#where").value = "";
+        document.getElementById("result").src = "drGenerate.png"
+      }      
+
+    </script>
+</nav>
+
 <div class='container'>
   <div class='loader'>
     <div class='loading dots'></div>
     <br>
     <div>loading</div>
   </div>
+
 </div>
+
+
+
+  
 </body>
 </html>
