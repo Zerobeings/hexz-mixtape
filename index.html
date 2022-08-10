@@ -267,6 +267,7 @@ td {
 .grid-container {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 50px;
   justify-content: center;
   grid-template-areas:
     'left right'
@@ -460,10 +461,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 <body>
 
 <nav>
-  <div>
-    <a style="font-size:120px; text-align: center;">HEXZmixtape</a>
+  <div style="font-size:8vw; text-align: center;">
+    <h1>HEXZmixtape</h1>
     <audio class='audioPlayer' controls loop src="Hexagonal_Zero.mp3">Your browser does not support the<code>audio</code> element.</audio>
-  </div>
+  </div> 
 
   
   <div>
@@ -473,7 +474,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <a class='btn' href="https://zerobeings.xyz" target="_blank">Zero Beings</a>
     <a class='btn' href="https://twitter.com/Zero_beings" target="_blank">Twitter</a>
     <a class='btn' href="https://discord.gg/sjbVYr6ZXS" target="_blank">Discord</a>
-    ...Powered by...<a class='btn' href="https://mixtape.cell.computer">Mixtape</a>...which is developed by...
+    ...Powered by...<a class='btn' href="https://mixtape.cell.computer">Mixtape</a>...developed by...
     <a class='btn' href="https://twitter.com/skogard" target="_blank">Skogard</a>
   </div>
 </nav>
@@ -482,7 +483,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="queryTool">
       <nav>
         <table>
-          <center><a style="font-size:32px ;">Find Your Zero:</a></center>
+          <div style="text-align:center;"><a style="font-size:32px ;">Find Your Zero:</a></div>
           <tr>
             <td >SELECT</td>
             <td><input id='select' type='text' placeholder='select columns' value='*'></td>
@@ -545,9 +546,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               });
               
             }
-
       function downLoad(){
-              
               imgageData = getCanvas.toDataURL("image/png", 1);
                     var newData = imgageData.replace(
                     /^data:image\/png/, "data:application/octet-stream");  
@@ -555,9 +554,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   $("#downloader").attr(
                   "download", "HEXZ.png").attr(
                   "href", newData);
-
             }
-
       function reset(){
         document.querySelector("#where").value = "";
         document.getElementById("result").src = "drGenerate.png"
